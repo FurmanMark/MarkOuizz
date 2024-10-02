@@ -1,0 +1,5 @@
+if let color = UIColor(hex: "296FAC") {
+    view.backgroundColor = color // Устанавливаем цвет фона на #296FAC
+} else {
+    print("Некорректный HEX-код") // Ошибка в случае неправильного формата HEX-кода
+}
