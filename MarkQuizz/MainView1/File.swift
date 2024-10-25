@@ -1,3 +1,11 @@
+//
+//  File.swift
+//  MarkQuizz
+//
+//  Created by Mark Furman on 27.09.2024.
+//
+
+
 private func configSubview() {
             view.addSubview(mainView)
     }
