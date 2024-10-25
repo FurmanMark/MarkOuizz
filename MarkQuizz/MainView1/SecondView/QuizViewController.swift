@@ -35,6 +35,7 @@ class QuizViewController: UIViewController, QuizViewDelegate {
         super.viewDidLoad()
         configSubview()
         layout()
+        navigationController?.navigationBar.tintColor = .white
     }
 
     private func configSubview() {
@@ -50,6 +51,7 @@ class QuizViewController: UIViewController, QuizViewDelegate {
         ])
     }
     
+
 }
 
 
