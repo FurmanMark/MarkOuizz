@@ -17,6 +17,8 @@
 		73321D6C2CB1242800EDD466 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73321D6B2CB1242800EDD466 /* QuizView.swift */; };
 		73321D702CB12F4B00EDD466 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73321D6F2CB12F3F00EDD466 /* Question.swift */; };
 		73434B242C9D8861009DEBE6 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73434B232C9D8861009DEBE6 /* QuizViewController.swift */; };
+		73B4954E2CCCF49200BAA2DB /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B4954D2CCCF48500BAA2DB /* ResultViewController.swift */; };
+		73B495502CCCF4A100BAA2DB /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B4954F2CCCF49800BAA2DB /* ResultView.swift */; };
 		73C9A7B92C9C7DF1007E6AFC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C9A7B82C9C7DDC007E6AFC /* MainView.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +35,8 @@
 		73321D6B2CB1242800EDD466 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		73321D6F2CB12F3F00EDD466 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		73434B232C9D8861009DEBE6 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
+		73B4954D2CCCF48500BAA2DB /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		73B4954F2CCCF49800BAA2DB /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		73C9A7B82C9C7DDC007E6AFC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				73C9A7B62C9C7CD7007E6AFC /* MainView1 */,
+				73B4954A2CCCF43500BAA2DB /* ResultView */,
 				7312687B2C64044A00E4623B /* AppDelegate.swift */,
 				73321D662CADCB7D00EDD466 /* Extensions.swift */,
 				7312687D2C64044A00E4623B /* SceneDelegate.swift */,
@@ -76,6 +81,15 @@
 				731268892C64044B00E4623B /* Info.plist */,
 			);
 			path = MarkQuizz;
+			sourceTree = "<group>";
+		};
+		73B4954A2CCCF43500BAA2DB /* ResultView */ = {
+			isa = PBXGroup;
+			children = (
+				73B4954D2CCCF48500BAA2DB /* ResultViewController.swift */,
+				73B4954F2CCCF49800BAA2DB /* ResultView.swift */,
+			);
+			path = ResultView;
 			sourceTree = "<group>";
 		};
 		73C9A7B62C9C7CD7007E6AFC /* MainView1 */ = {
@@ -176,7 +190,9 @@
 				7312687E2C64044A00E4623B /* SceneDelegate.swift in Sources */,
 				73321D6C2CB1242800EDD466 /* QuizView.swift in Sources */,
 				73434B242C9D8861009DEBE6 /* QuizViewController.swift in Sources */,
+				73B495502CCCF4A100BAA2DB /* ResultView.swift in Sources */,
 				73C9A7B92C9C7DF1007E6AFC /* MainView.swift in Sources */,
+				73B4954E2CCCF49200BAA2DB /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

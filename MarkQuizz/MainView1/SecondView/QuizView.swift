@@ -7,21 +7,28 @@
 
 import UIKit
 
+// MARK: - DELEGATES & PROTOCOLS // Для передачи
 protocol QuizViewDelegate: AnyObject {
     func didSelectAnswer()
 }
-    
+
+protocol CountRightAnswers {
+    func didUpdateCorrectAnswerCount(_ countRight: Int)
+}
+// MARK: - ENUMS & STRUCTS
+
+
 class QuizView: UIView {
     
     private weak var delegate: QuizViewDelegate?
     
     private var question: Question
     
-    private var countRight = 0
+    var countRight = 0
     
     private var textLevel = 1
     
-    
+// MARK: - PROPERTIES public & private & computed properties
     //Создаем свойства элементов которые будут на этом вью
     private lazy var backGroundView: UIView = {
         let view = UIView()
@@ -30,7 +37,6 @@ class QuizView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
         }()
-    
     
     private lazy var labelWelcome: UILabel = {
         let label = UILabel()
@@ -62,7 +68,7 @@ class QuizView: UIView {
     private lazy var buttonThree: UIButton = createButton(title: "3", tag: 3, backgroundColor: .yellow)
     private lazy var buttonFour: UIButton = createButton(title: "4", tag: 4, backgroundColor: .yellow)
     
-    
+// MARK: - INITIALIZERS
     init(delegate: QuizViewDelegate, question: Question) {
         self.delegate = delegate
         self.question = question
@@ -73,6 +79,41 @@ class QuizView: UIView {
         layout()
         initQuestion()
     }
+    
+    init(delegate: QuizViewDelegate? = nil, question: Question) {
+        self.delegate = delegate
+        self.question = question
+        super.init(frame: .zero)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+// MARK: - LIFECYCLE METHODS
+    
+
+// MARK: - PRIVATE METHODS
+
+    func setNewQuestion(_ question: Question) {
+        self.question = question
+        initQuestion()
+    }
+    
+    @objc private func buttonTapped(_ sender: UIButton) {
+        //delegate?.didSelectAnswer(tag: sender.tag)
+        if sender.tag == self.question.rightAnswer {
+            print("ПРАВИЛЬНО")
+            countRight += 1
+            print(countRight)
+        } else {
+            print("НЕПРАВИЛЬНО")
+            print(countRight)
+        }
+        textLevel += 1
+        updateQuestionLabel()
+        delegate?.didSelectAnswer()
+       }
     
     private func updateQuestionLabel() {
         labelWelcome.text = "level: \(question.level)\nВопрос №\(textLevel)"
@@ -86,7 +127,6 @@ class QuizView: UIView {
         
         textDescriptions.text = self.question.question
     }
-    
     
     private func createButton(title: String, tag: Int, backgroundColor: UIColor) -> UIButton {
         let button = UIButton()
@@ -105,35 +145,6 @@ class QuizView: UIView {
         
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
                return button
-    }
-
-    @objc private func buttonTapped(_ sender: UIButton) {
-        //delegate?.didSelectAnswer(tag: sender.tag)
-        if sender.tag == self.question.rightAnswer {
-            print("ПРАВИЛЬНО")
-            countRight += 1
-        } else {
-            print("НЕПРАВИЛЬНО")
-        }
-        textLevel += 1
-        updateQuestionLabel()
-        delegate?.didSelectAnswer()
-       }
-    
-    init(delegate: QuizViewDelegate? = nil, question: Question) {
-        self.delegate = delegate
-        self.question = question
-        super.init(frame: .zero)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setNewQuestion(_ question: Question) {
-        self.question = question
-        initQuestion()
     }
     
     private func configSubview() {
@@ -173,4 +184,9 @@ class QuizView: UIView {
             buttonFour.centerXAnchor.constraint(equalTo: centerXAnchor),
             ])
         }
+    
+    // MARK: - HELPER METHODS
 }
+
+
+    

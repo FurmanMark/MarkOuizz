@@ -10,6 +10,12 @@ enum Level: String {
     case senior
 }
 
+enum Text {
+    static let dicription = "Выбери уровень сложности"
+}
+
+
+
 class MainView: UIView {
     
     private weak var delegate: MainViewDelegate?
@@ -22,10 +28,7 @@ class MainView: UIView {
         layout()
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
+//MARK: PROPERTIES public & private & computed properties
     // Создание UI-компонентов
     private lazy var backGroundView: UIView = {
         let view = UIView()
@@ -59,7 +62,27 @@ class MainView: UIView {
     private lazy var buttonJunior: UIButton = createButton(title: "JUNIOR", tag: 1, backgroundColor: .green)
     private lazy var buttonMiddle: UIButton = createButton(title: "MIDDLE", tag: 2, backgroundColor: .yellow)
     private lazy var buttonSenior: UIButton = createButton(title: "SENIOR", tag: 3, backgroundColor: .red)
-
+    
+//MARK: Initializers
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+//MARK: Lifecycle Methods
+    // Обработчик нажатий кнопок
+    @objc func buttonTapped(_ sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            delegate?.getLevel(level: .junior)
+        case 2:
+            delegate?.getLevel(level: .middle)
+        case 3:
+            delegate?.getLevel(level: .senior)
+        default:
+            break
+        }
+    }
+    
     private func createButton(title: String, tag: Int, backgroundColor: UIColor) -> UIButton {
         let button = UIButton()
         button.setTitle(title, for: .normal)
@@ -74,29 +97,6 @@ class MainView: UIView {
         button.tag = tag
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
-    }
-
-    // Обработчик нажатий кнопок
-    @objc func buttonTapped(_ sender: UIButton) {
-        switch sender.tag {
-        case 1:
-            delegate?.getLevel(level: .junior)
-        case 2:
-            delegate?.getLevel(level: .middle)
-        case 3:
-            delegate?.getLevel(level: .senior)
-        default:
-            break
-        }
-    }
-
-    private func configSubview() {
-        addSubview(backGroundView)
-        addSubview(labelWelcome)
-        addSubview(textDescriptions)
-        addSubview(buttonJunior)
-        addSubview(buttonMiddle)
-        addSubview(buttonSenior)
     }
 
     private func layout() {
@@ -130,8 +130,18 @@ class MainView: UIView {
             buttonSenior.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
+    
+    private func configSubview() {
+        addSubview(backGroundView)
+        addSubview(labelWelcome)
+        addSubview(textDescriptions)
+        addSubview(buttonJunior)
+        addSubview(buttonMiddle)
+        addSubview(buttonSenior)
+    }
 }
+    
+//MARK: Helper Methods
 
-enum Text {
-    static let dicription = "Выбери уровень сложности"
-}
+//MARK: Private Methods
+

@@ -1,5 +1,7 @@
 import UIKit
 
+
+
 class QuizViewController: UIViewController, QuizViewDelegate {
     func didSelectAnswer() {
         self.questions.removeFirst()
@@ -7,20 +9,21 @@ class QuizViewController: UIViewController, QuizViewDelegate {
             quizView.setNewQuestion(first)
         } else {
             print("QUIZ NO")
-            navigationController?.popViewController(animated: true)
+            navigationController?.pushViewController(ResultViewController(countRight: quizView.countRight), animated: true)
         }
     }
+//MARK: Enums & Struct
     
-//MARK: private properties
+//MARK: Properties public & private (And computed properties)
+    private let level: LevelChoose
+    private var questions: [Question]
     private lazy var quizView: QuizView = {
         let view = QuizView(delegate: self, question: self.questions[0])
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
-    private let level: LevelChoose
-    private var questions: [Question]
-
+    
+//MARK: Initializers
     init(level: LevelChoose) {
         self.level = level
         self.questions = MOK.getQuestions(level: self.level)
@@ -31,12 +34,18 @@ class QuizViewController: UIViewController, QuizViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
+//MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configSubview()
         layout()
         navigationController?.navigationBar.tintColor = .white
     }
+//MARK: Delegates & Protocol
+
+//MARK: Helper Methods
+
+//MARK: Private Methods
 
     private func configSubview() {
         view.addSubview(quizView)
